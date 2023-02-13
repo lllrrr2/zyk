@@ -5,7 +5,7 @@
  变量：zswlCookie='xxxx@12345678910#abcdefg '  多个账号用 @ 或者 换行 分割
        zswlhelpAu = true/false 用于是否助力作者(默认为true)
  定时一天三次
- cron: 10 8,10,19 * * *
+ cron: 50 8,10,19 * * *
  */
  const $ = new Env('掌上温岭')
  const notify = $.isNode() ? require('./sendNotify') : '';
