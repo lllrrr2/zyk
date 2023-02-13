@@ -5,7 +5,7 @@
  变量：nhsyCookie='xxxx@12345678910#abcdefg '  多个账号用 @ 或者 换行 分割
        nhsyhelpAu = true/false 用于是否助力作者(默认为true)
  定时一天三次
- cron: 10 8,10,19 * * *
+ cron: 25 8,10,19 * * *
  */
  const $ = new Env('南湖声音')
  const notify = $.isNode() ? require('./sendNotify') : '';
