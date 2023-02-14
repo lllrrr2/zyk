@@ -1,5 +1,5 @@
 #小米社区-日常任务
-#环境变量 xiaomi="账户&密码" 多账户 # 分割
+#环境变量 xiaomi="账户&密码" 目前不支持多账户
 import requests,json,time,base64,binascii,hashlib,os,sys,re
 from datetime import datetime
 from sendNotify import send
