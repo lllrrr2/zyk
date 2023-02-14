@@ -1,7 +1,7 @@
 青龙面板
 - 拉取仓库
   ```
-  ql repo https://github.com/a65101855/zyk.git "" "utils.js|md5|dd_cookie|mtCookie" "sendNotify|utils.js|md5|dd_cookie|mtCookie"
+  ql repo http://gh.301.ee/https://github.com/a65101855/zyk.git "" "utils" "utils"
 
 公告
 
