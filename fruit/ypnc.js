@@ -1,6 +1,6 @@
 /**
  *下载
- https://ypstatic.cnnb.com.cn/yppage-server/index.html#/downLoad/index?code=CTTJNGQS
+https://ypstatic.cnnb.com.cn/yppage-server/index.html#/downLoad/index?code=56YQR3BR
  * 只需要甬派APP的手机号和密码
  * 
  * 安装依赖 form-data , axios
