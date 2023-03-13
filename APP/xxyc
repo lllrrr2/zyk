@@ -16,6 +16,7 @@ import time
  
  * 抓取 https://yc.iuuyc.com/
  * 提取lt=后面的值,并填写到代码里面 xfck=
+ * CK需要URL解码https://www.bejson.com/enc/urlencode/提取
  * cron 0 0 8 * * ? 定时自己改 每天一次
  *
  */
