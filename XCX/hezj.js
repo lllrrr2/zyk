@@ -1,6 +1,5 @@
-
 /**
- * 海尔智佳
+ * 海尔智家
  * cron 8 1 * * *  hezj.js
  * 活动入口 首页 智慧小屋
  * 2023/03/18 修复BUG
@@ -16,7 +15,7 @@
 
 
 
-const $ = new Env("海尔智佳");
+const $ = new Env("海尔智家");
 const ckName = "hezj_data";
 //-------------------- 一般不动变量区域 -------------------------------------
 const Notify = 1;		 //0为关闭通知,1为打开通知,默认为1
@@ -93,7 +92,7 @@ class UserInfo {
             'Host': 'mps.haiersmarthomes.com',
             'accesstoken': this.ck,
             'origin': 'https://zjrs.haier.net',
-            'user-agent': 'Mozilla/5.0 (Linux; U; Android 10; zh-CN; MI 8 Lite Build/QKQ1.190910.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 UWS/3.22.2.55 Mobile Safari/537.36 UCBS/3.22.2.55_220929181439 ChannelId(1) NebulaSDK/1.8.100112 Nebula  App/Uplus Nebula mPaaSClient',
+            'user-agent': 'Mozilla/5.0 (Linux; U; Android 13; zh-CN; 21051182C Build/TKQ1.221013.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/69.0.3497.100 UWS/3.22.2.55 Mobile Safari/537.36 UCBS/3.22.2.55_220929181439 ChannelId(2) NebulaSDK/1.8.100112 Nebula  App/Uplus Nebula mPaaSClient',
             'Content-Type': 'application/json;charset=UTF-8',
             'accept': 'application/json, text/plain, */*',
             'clientid': this.clientid,
@@ -101,7 +100,7 @@ class UserInfo {
             'accounttoken': this.ck,
             'appid': 'MB-UZHSH-0000',
             'appkey': 'f50c76fbc8271d361e1f6b5973f54585',
-            'appversion': '7.19.0',
+            'appversion': '7.19.1',
             'referer': 'https://zjrs.haier.net/haierActivitys/intelligentHouse/index.html?container_type=3&hybrid_navbar_hidden=true&needAuthLogin=1&needLogin=1&needShare=1&checkGuestMode=1',
             //'accept-encoding: 'gzip, deflate'
             //'accept-language': 'zh-CN,en-US;q=0.9'
@@ -178,11 +177,11 @@ class UserInfo {
                 headers: this.headersPost,
                 body: JSON.stringify({ "taskCode": taskCode, "sourceClient": 1 })
             }
-            console.log(options);
+            //console.log(options);
             let result = await httpRequest(options);
             //console.log(result);
             if (result.retCode == '00000') {
-                DoubleLog(`账号[${this.index}]  任务执行成功: [${result.data.signinQueryDetailList[0].dailyDate}] [${result.data.signinQueryDetailList[1].dailyDate}] `);
+                DoubleLog(`账号[${this.index}]  任务执行成功: [${taskCode}] `);
 
             } else {
                 DoubleLog(`账号[${this.index}]  任务执行失效:,原因未知！`);
