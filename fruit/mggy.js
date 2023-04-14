@@ -1,7 +1,14 @@
 /*
-目标:  芒果果园App 抓包https://api-farm.game.mgtv.com/api/login请求body全部内容 多账号换行隔开
+芒果App
+抓包https://api-farm.game.mgtv.com/api/login
+请求body全部内容 
+多账号换行隔开
 
-变量格式：export mggy="body=xxxxxxxx"
+环境变量格式mggy
+格式body=openid=xxxxxxxx
+openid=xxxx结尾一个值不要
+比如结尾entrance=_rkrw
+去掉_rkrw这段
 
 */
 
