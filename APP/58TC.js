@@ -4,7 +4,7 @@
 安卓貌似需要root才能捉到包，IOS随便捉
 多账号切换账号不能退出登录
 
-手动捉包把PPU=UID=xxxx&UN=yyyy&...填到wbtcCookie里，多账号@隔开
+手动捉包把PPU=UID=xxxx&UN=yyyy&...填到wbtcCookie里，多账号换行隔开
 注意前面有个PPU=，捉包只有UID=xxx的话手动加上
 
 自定义UA：填到wbtcUA里，不填默认IOS15的UA
@@ -20,14 +20,14 @@
 V2P/圈叉：
 [task_local]
 #58同城
-7 * * * * https://raw.githubusercontent.com/leafxcy/JavaScript/main/58tc.js, tag=58同城, enabled=true
+7 7-12 * * * https://raw.githubusercontent.com/leafTheFish/DeathNote/main/58tc.js, tag=58同城, enabled=true
 [rewrite_local]
-https://magicisland.58.com/web/sign/getIndexSignInInfo url script-request-header https://raw.githubusercontent.com/leafxcy/JavaScript/main/58tc.js
+https://magicisland.58.com/web/sign/getIndexSignInInfo url script-request-header https://raw.githubusercontent.com/leafTheFish/DeathNote/main/58tc.js
 [MITM]
 hostname = magicisland.58.com
 */
+const $ = new Env("58同城")
 const jsname = '58同城'
-const $ = Env(jsname)
 const logDebug = 0
 
 const notifyFlag = 1; //0为关闭通知，1为打开通知,默认为1
@@ -104,9 +104,9 @@ class UserInfo {
     }
     
     async doTask(sceneId,taskId) {
-        var time = `${(new Date()).getTime()}`
-        var signo = `${time}${taskId}`
-        let url = `https://taskframe.58.com/web/task/dotask?timestamp=${time}&sign=${MD5Encrypt(signo)}&taskId=${taskId}`//&taskData=15`
+        let time = (new Date()).getTime()
+        let sign = MD5Encrypt(`${time}${taskId}`)
+        let url = `https://taskframe.58.com/web/task/dotask?timestamp=${(new Date()).getTime()}&sign=${sign}&taskId=${taskId}`//&taskData=15`
         let body = ``
         let urlObject = populateUrlObject(url,this.cookie,body)
         await httpRequest('get',urlObject)
@@ -121,9 +121,9 @@ class UserInfo {
     }
     
     async getReward(sceneId,taskId) {
-        var time = `${(new Date()).getTime()}`
-        var signo = `${time}${taskId}`
-        let url = `https://taskframe.58.com/web/task/reward?timestamp=${time}&sign=${MD5Encrypt(signo)}&taskId=${taskId}`
+        let time = (new Date()).getTime()
+        let sign = MD5Encrypt(`${time}${taskId}`)
+        let url = `https://taskframe.58.com/web/task/reward?timestamp=${(new Date()).getTime()}&sign=${sign}&taskId=${taskId}`
         let body = ``
         let urlObject = populateUrlObject(url,this.cookie,body)
         await httpRequest('get',urlObject)
@@ -322,7 +322,7 @@ class UserInfo {
                     await $.wait(500)
                     await this.oreGameScore()
                 }
-                console.log(`账号[${this.index}]神奇矿余额${this.ore.ore} ≈ ${this.ore.money}元`)
+                console.log(`账号[${this.index}]神奇矿余额${this.ore.ore} ≈ ${this.ore.money.toFixed(2)}元`)
             }
         } else {
             console.log(`账号[${this.index}]查询神奇矿主页失败: ${result.message}`)
@@ -581,7 +581,7 @@ class UserInfo {
     }
     
     async cashSigninlist() {
-        let url = `https://tzbl.58.com/tzbl/taskcenter/signinlist?requestSource=1`
+        let url = `https://magicisland.58.com/web/sign/signInfo`
         let body = ``
         let urlObject = populateUrlObject(url,this.cookie,body)
         await httpRequest('get',urlObject)
@@ -589,7 +589,7 @@ class UserInfo {
         if(!result) return
         //console.log(result)
         if(result.code == 0) {
-            this.cashSign = result.data.signInVO.status==2 ? true : false
+            this.cashSign = result.result.todayStatus==0 ? true : false
             let cashStr = this.cashSign ? '未签到' : '已签到'
             console.log(`账号[${this.index}]今日现金签到页: ${cashStr}`)
         } else {
@@ -598,7 +598,7 @@ class UserInfo {
     }
     
     async cashSignin() {
-        let url = `https://tzbl.58.com/tzbl/taskcenter/signin?requestSource=1`
+        let url = `https://magicisland.58.com/web/sign/signInV2?sessionId=&successToken=&scene=null&aa=11`
         let body = ``
         let urlObject = populateUrlObject(url,this.cookie,body)
         await httpRequest('get',urlObject)
@@ -606,7 +606,7 @@ class UserInfo {
         if(!result) return
         //console.log(result)
         if(result.code == 0) {
-            console.log(`账号[${this.index}]现金签到获得${result.data.amount}元`)
+            console.log(`账号[${this.index}]现金签到获得${result.result.amount}元`)
         } else {
             console.log(`账号[${this.index}]查询现金签到失败: ${result.message}`)
         }
@@ -726,7 +726,7 @@ class UserInfo {
 ///////////////////////////////////////////////////////////////////
 async function checkEnv() {
     if(userCookie) {
-        for(let userCookies of userCookie.split('@')) {
+        for(let userCookies of userCookie.split('\n')) {
             if(userCookies) userList.push(new UserInfo(userCookies))
         }
         userCount = userList.length
