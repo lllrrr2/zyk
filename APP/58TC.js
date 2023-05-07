@@ -581,7 +581,7 @@ class UserInfo {
     }
     
     async cashSigninlist() {
-        let url = `https://magicisland.58.com/web/sign/signInfo`
+        let url = `https://tzbl.58.com/tzbl/taskcenter/signinlist?requestSource=1`
         let body = ``
         let urlObject = populateUrlObject(url,this.cookie,body)
         await httpRequest('get',urlObject)
@@ -589,7 +589,7 @@ class UserInfo {
         if(!result) return
         //console.log(result)
         if(result.code == 0) {
-            this.cashSign = result.result.todayStatus==0 ? true : false
+            this.cashSign = result.data.signInVO.status==2 ? true : false
             let cashStr = this.cashSign ? '未签到' : '已签到'
             console.log(`账号[${this.index}]今日现金签到页: ${cashStr}`)
         } else {
@@ -598,7 +598,7 @@ class UserInfo {
     }
     
     async cashSignin() {
-        let url = `https://magicisland.58.com/web/sign/signInV2?sessionId=&successToken=&scene=null&aa=11`
+        let url = `https://tzbl.58.com/tzbl/taskcenter/signin?requestSource=1`
         let body = ``
         let urlObject = populateUrlObject(url,this.cookie,body)
         await httpRequest('get',urlObject)
@@ -606,7 +606,7 @@ class UserInfo {
         if(!result) return
         //console.log(result)
         if(result.code == 0) {
-            console.log(`账号[${this.index}]现金签到获得${result.result.amount}元`)
+            console.log(`账号[${this.index}]现金签到获得${result.data.amount}元`)
         } else {
             console.log(`账号[${this.index}]查询现金签到失败: ${result.message}`)
         }
