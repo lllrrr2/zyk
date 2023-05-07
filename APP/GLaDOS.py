@@ -11,8 +11,8 @@ import json
 sever = 'on'
 # 获取pushplus的token（在青龙面板的环境变量或配置文件中设置PUSH_PLUS_TOKEN）
 pushplus_token = os.environ["PUSH_PLUS_TOKEN"]
-# 获取glados账号对应cookie（在青龙面板的环境变量中设置galdos_cookie）
-cookie = os.environ["galdos_cookie"]
+# 获取glados账号对应cookie（在青龙面板的环境变量中设置gladosck）
+cookie = os.environ["gladosck"]
 
 def start():
     
