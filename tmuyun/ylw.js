@@ -3,7 +3,6 @@
  功能：完成任务，获得积分
  抓包：https://vapp.tmuyun.com/ 任意-请求头中 x-session-id 或使用 手机号#密码 两者互不影响
  变量：ylwCookie='xxxx@12345678910#abcdefg '  多个账号用 @ 或者 换行 分割
-       jrychelpAu = true/false 用于是否助力作者(默认为true)
  定时一天三次
  cron: 40 8,10,19 * * *
  */
