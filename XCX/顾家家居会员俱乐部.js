@@ -7,8 +7,6 @@
  * 项目定时：每40分钟运行一次
  * cron: 0 40 0 * * *
  * github仓库：https://github.com/
- * 
- * 交流Q群：104062430 作者:乐客播 欢迎前来提交bug
  */
 
 //===============脚本版本=================//
@@ -38,7 +36,7 @@ let hostname = 'https://' + host;
         if (!(await Envs())){
             return;
         } else {
-            DoubleLog(`\n 交流Q群：104062430 作者:乐客播 欢迎前来提交bug`)
+            DoubleLog(`\n`)
             await getVersion();
             DoubleLog(`\n================ 共找到 ${UserCookieArr.length} 个账号 ================ \n 脚本执行✌北京时间(UTC+8)：${new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000).toLocaleString()} \n================ 版本对比检查更新 ================`);          
             if (scriptVersionLatest != scriptVersion) {
