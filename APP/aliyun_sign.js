@@ -1,5 +1,6 @@
 //阿里云盘连续签到活动
-//https://alist.nn.ci/zh/guide/drivers/aliyundrive.html 打开页面扫码获取refresh_token
+//扫码获取 https://alist.nn.ci/zh/guide/drivers/aliyundrive.html 打开页面扫码获取refresh_token
+//网页获取 https://github.com/bighammer-link/Common-scripts/wiki/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98refresh_token%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95
 //环境变量:ALI_TOKEN,多账号用换行或@或&分隔
 
 const $ = API();
