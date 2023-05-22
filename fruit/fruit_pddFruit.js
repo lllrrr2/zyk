@@ -11,7 +11,7 @@ $.lackCardIds = []
 $.giftRecords = []
 $.lackMsg = ''
 $.helpFlag = true // 获取助力码
-$.taskList = [36155, 36164, 36125, 37464, 37509, 36013, 36007, 36167, 36132]
+$.taskList = []
 if (process.env.PDD_TOKENS) {
     if (process.env.PDD_TOKENS.indexOf('@') > -1) {
         cookieArr = process.env.PDD_TOKENS.split('@');
@@ -38,7 +38,7 @@ $.message = ''
             $.remark = cookie.split('&')[1]
         } else {
             $.accessToken = cookie
-            $.remark = '匿名用户'
+            $.remark = '偷撸祈'
         }
         console.log(`\n🔄 当前进行第${i + 1}个账号，用户备注：${$.remark}`)
         await missionList()
@@ -70,7 +70,7 @@ $.message = ''
         //         await $.wait(1000)
         //     }
         // }
-        console.log(`\n========开宝箱任务=========`)
+        console.log(`\n========使用养分任务=========`)
         for (let z = 1; z < 6; z++) {
             $.boxOrder = z
             await openBox()
@@ -95,7 +95,7 @@ $.message = ''
     })
 
 function missionList() {
-    let url = 'https://mobile.yangkeduo.com/proxy/api/api/manor-query/tag/mission/list?pdduid=0'
+    let url = 'https://mobile.yangkeduo.com/proxy/api/api/manor-query/tag/mission/list?pdduid=5614988410292'
     let body = {
         "mission_tag": "HOME_GAIN_WATER_MISSION_LIST_EXTRA",
         "fun_pl": 10,
@@ -193,7 +193,7 @@ function water() {
 }
 
 function applyActivity() {
-    let url = 'https://mobile.yangkeduo.com/proxy/api/api/manor/common/apply/activity?pdduid=9188599218'
+    let url = 'https://mobile.yangkeduo.com/proxy/api/api/manor/common/apply/activity?pdduid= 5614988410292'
     let body = {
         "type": 18,
         "fun_pl": 10,
@@ -221,11 +221,13 @@ function applyActivity() {
 }
 
 function openBox() {
-    let url = 'https://mobile.yangkeduo.com/proxy/api/api/manor/withered/open/box?pdduid=9188599218'
+    let url = 'https://mobile.yangkeduo.com/proxy/api/api/manor/use/backpack/goods?pdduid=5614988410292'
     let body = {
-        "box_order": $.boxOrder,
-        "tubetoken": "",
-        "fun_pl": 10
+           "fun_pl" : 10,
+           "source" :36069,
+           "type" : 2,
+           "exchange_amount" : 1,
+           "tubetoken": ""
     }
     let myRequest = getPostRequest(url, body);
     return new Promise(async resolve => {
@@ -233,12 +235,12 @@ function openBox() {
             try {
                 dataObj = JSON.parse(data)
                 if (dataObj.error_code) {
-                    console.log(`🚫 获取宝箱信息失败：${dataObj.error_msg}`)
+                    console.log(`🚫 获取养分信息失败：${dataObj.error_msg}`)
                 } else {
                     if (dataObj.status == 3) {
-                        console.log(`🚫 获取宝箱信息失败`)
+                        console.log(`🚫 获取养分信息失败`)
                     } else {
-                        console.log(`💧 收取宝箱成功：收获${dataObj.reward_list[0].reward_amount}滴水`)
+                        console.log(`💧 收取养分成功：收获${dataObj.reward_list[0].reward_amount}养分`)
                     }
                 }
             } catch (e) {
