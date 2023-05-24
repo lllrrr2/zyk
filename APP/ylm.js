@@ -4,6 +4,7 @@
  * 项目名称：优乐米
  * 项目抓包：抓pepcoinnew.pepcoinbypepsico.com.cn下的token填入变量
  * 项目变量：ylm_data
+ * 项目地址：https://admin.cdylm.com/h5/index.html?fid=950274#/
  */
 
 //===============脚本版本=================//
